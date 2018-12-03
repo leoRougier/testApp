@@ -12,7 +12,9 @@ class AlbumPresenter(private val albumManager: AlbumManager): BasePresenter<Albu
             .observeOn(AndroidSchedulers.mainThread())
             .subscribeOn(Schedulers.io())
             .doOnSubscribe { lifecycleDisposable(it) }
+            .map { it.map { it.title } }
             .subscribe({
+                view?.showAlbum(it)
                Log.i("ALBUMLIST", it.toString())
             })
     }

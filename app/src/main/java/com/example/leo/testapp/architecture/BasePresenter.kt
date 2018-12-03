@@ -25,7 +25,6 @@ abstract class BasePresenter<out T : BaseView> : LifecycleObserver {
 
     @OnLifecycleEvent(Lifecycle.Event.ON_DESTROY)
     open fun onDestroy() {
-        mCompositeDisposable.clear()
         mCompositeDisposable.dispose()
         mView?.clear()
     }
